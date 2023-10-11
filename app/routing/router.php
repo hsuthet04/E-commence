@@ -1,7 +1,13 @@
 <?php
 
+use App\Routing\RouteDispatcher;
+
 $router = new AltoRouter();
 
-$router->map("GET", "/", "BaseController@index", "Home Route");
+$router->setBasePath("/E_Commence/public");
 
-new \App\routing\RouteDispatcher($router);
+$router->map("GET", "/", "App\Controllers\IndexController@show", "Home Route");
+$router->map("GET", "/admin/category", "App\Controllers\CategoryController@index", "Category Create");
+$router->map("POST", "/admin/category", "App\Controllers\CategoryController@store", "Category Store");
+
+new RouteDispatcher($router);

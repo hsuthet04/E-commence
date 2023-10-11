@@ -1,25 +1,30 @@
 <?php
 
-namespace App\routing;
+namespace App\Routing;
 
 use AltoRouter;
 
 class RouteDispatcher
 {
-    private $match, $controller, $method;
+    private $match,$controller,$method;
 
     public function __construct(AltoRouter $router)
     {
         $this->match = $router->match();
+        if($this->match){
+            list($controller,$method) = explode("@",$this->match["target"]);
+            $this->controller = $controller;
+            $this->method = $method;
 
-        if ($this->match) {
-            list($controller, $method) = explode("@", $this->match["target"]);
-
-            echo "<br>Controller is " . $controller;
-            echo "<br>Method is " . $method;
-        } else {
-            header($_SERVER["SERVER_PROTOCOL"] . "404 not found");
-            echo "Not Match Route";
+            if(is_callable([new $this->controller,$this->method])){
+                call_user_func_array([new $this->controller,$this->method],$this->match["params"]);
+            }else {
+                echo "It is not callable";
+            }
+        }else {
+            header($_SERVER["SERVER_PROTOCOL"] . "404 not found!");
+            echo "Not Match Route!";
         }
     }
 }
+
