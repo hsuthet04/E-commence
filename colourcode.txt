@@ -1,0 +1,6 @@
+#C9AE5D-navbar
+#513B1C-font->logo,
+#C2B280-bg,
+#BCB88A-bg
+#C19A6B
+#827839-nav
