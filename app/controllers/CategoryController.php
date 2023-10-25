@@ -18,9 +18,10 @@ class CategoryController extends BaseController
     {
         // Redirect::to("/");
         $categories = Category::all()->count();
-        list($cats, $pages) = paginate(3, $categories, "categories");
+        list($cats, $pages) = paginate(3, $categories, new Category());
+        $cats = json_decode(json_encode($cats));
         //beautify($cats); 
-        view("admin/category/create", compact('cats','pages'));
+        view("admin/category/create", compact('cats', 'pages'));
     }
     public function store()
     {
@@ -79,6 +80,37 @@ class CategoryController extends BaseController
         } else {
             Session::flash("delete_fail", "Category Delete Fail");
             Redirect::to("/admin/category/create");
+        }
+    }
+    public function update()
+    {
+        $post = Request::get('post');
+        $data = [
+            "name" => $post->name,
+            "token" => $post->token,
+            "id" => $post->id,
+            "con" => ''
+        ];
+
+        if (CSRFToken::checkToken($post->token)) {
+            $rules = [
+                "name" => ["required" => true, "minlength" => "5", "uniques" => "categories"]
+            ];
+            $validator = new ValidateRequest();
+            $validator->checkValidate($post, $rules);
+
+            if ($validator->hasError()) {
+                //$data['con'] = "Validation error";
+                header('HTTP/1.1 422 Validation Error', true, 422);
+                echo json_encode($validator->getErrors());
+            } else {
+                Category::where("id", $post->id)->update(["name" => $post->name]);
+                $data['con'] = "Good to go";
+                echo json_encode($data);
+            }
+        } else {
+            header('HTTP/1.1 422 Token Mismatch Error', true, 422);
+            echo json_encode(["errors" => ""]);
         }
     }
 }

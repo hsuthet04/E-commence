@@ -7,7 +7,7 @@
     <title><?php echo $__env->yieldContent('title'); ?></title>
     <link rel="Shortcut icon" href="<?php echo e(asset("images/PetCafelogo.jpg")); ?>">
     <link rel="stylesheet" href="<?php echo e(asset("css/app.css")); ?>">
-    
+
 </head>
 
 <body style="background-color: #BCB88A;">
@@ -18,7 +18,9 @@
         <img src="<?php echo e(asset("images/home3.jpg")); ?>" alt="" style="width: 100%;">
     </div>
     <?php echo $__env->yieldContent('content'); ?>
-
+    <script src="<?php echo e(asset("js/app.js")); ?>"></script>
+    <script src="https://kit.fontawesome.com/47655717bb.js" crossorigin="anonymous"></script>
+    <?php echo $__env->yieldContent("script"); ?>
 </body>
-<script src="https://kit.fontawesome.com/47655717bb.js" crossorigin="anonymous"></script>
+
 </html>

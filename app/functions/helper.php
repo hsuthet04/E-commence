@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Carbon;
+
 use Philo\Blade\Blade;
-use Illuminate\Database\Capsule\Manager as Capsule;
+
 use voku\helper\Paginator;
 
 function view($path, $data = [])
@@ -38,21 +38,13 @@ function slug($value)
     $value = preg_replace('/[ _]+/u', '-', $value);
     return $value;
 }
-function pagination($num_of_records, $total_record, $table_name, $object)
+function paginate($num_of_records, $total_record,$object)
 {
-    $categories = [];
+    
     $pages = new Paginator($num_of_records, 'p');
-    $cats = Capsule::select("SELECT * FROM $table_name ORDER BY id DESC".$pages->get_limit());
+    $categories=$object->getPaginate($pages->get_limit());
     $pages->set_total($total_record);
 
-    foreach ($cats as $cat) {
-        $date = new Carbon($cat->created_at);
-        array_push($categories, [
-            "id" => $cat->id,
-            "name" => $cat->name,
-            "slug" => $cat->slug,
-            "created" => $date->toFormattedDateString()
-        ]);
-    }
-    return [$categories,$pages->page_links()];
+
+    return [$categories, $pages->page_links()];
 }

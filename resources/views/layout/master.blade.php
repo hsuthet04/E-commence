@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
     <link rel="Shortcut icon" href="{{asset("images/PetCafelogo.jpg")}}">
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
-    
+
 </head>
 
 <body style="background-color: #BCB88A;">
@@ -18,7 +18,9 @@
         <img src="{{asset("images/home3.jpg")}}" alt="" style="width: 100%;">
     </div>
     @yield('content')
-
+    <script src="{{asset("js/app.js")}}"></script>
+    <script src="https://kit.fontawesome.com/47655717bb.js" crossorigin="anonymous"></script>
+    @yield("script")
 </body>
-<script src="https://kit.fontawesome.com/47655717bb.js" crossorigin="anonymous"></script>
+
 </html>
