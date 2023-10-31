@@ -1,0 +1,10 @@
+.pagination>li {
+    padding: 5px 15px;
+    background: #fff;
+    color: #000;
+    margin-right: 1px;
+}
+
+#edit-cat {
+    cursor: pointer;
+}

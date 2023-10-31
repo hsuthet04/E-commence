@@ -10,6 +10,7 @@ use App\Classes\UpdateFile;
 use App\Classes\ValidateRequest;
 use App\Controllers\BaseController;
 use App\Models\Category;
+use App\Models\SubCategory;
 
 
 class CategoryController extends BaseController
@@ -19,9 +20,12 @@ class CategoryController extends BaseController
         // Redirect::to("/");
         $categories = Category::all()->count();
         list($cats, $pages) = paginate(3, $categories, new Category());
+        $subcategories = SubCategory::all()->count();
+        list($sub_cats, $sub_pages) = paginate(3, $subcategories, new SubCategory());
+
         $cats = json_decode(json_encode($cats));
-        //beautify($cats); 
-        view("admin/category/create", compact('cats', 'pages'));
+        $sub_cats = json_decode(json_encode($sub_cats));
+        view("admin/category/create", compact('cats', 'pages', 'sub_cats', 'sub_pages'));
     }
     public function store()
     {
@@ -29,21 +33,22 @@ class CategoryController extends BaseController
         //Session::remove("token");
         if (CSRFToken::checkToken($post->token)) {
             $rules = [
-                "name" => ["required" => true, "minLength" => "5", "unique" => "categories"]
+                "name" => ["required" => true, "minLength" => "3", "unique" => "categories"]
             ];
             $validator = new ValidateRequest();
             $validator->checkValidate($post, $rules);
 
-            // beautify(Request::all());
-            // echo "<hr>";
 
-            // $uploadFile = new UpdateFile();
-            // var_dump($uploadFile->move(Request::get("file")));
             if ($validator->hasError()) {
-                //beautify($validator->getErrors());
-                $cats = Category::all();
                 $errors = $validator->getErrors();
-                view("admin/category/create", compact('cats', 'errors'));
+                $categories = Category::all()->count();
+                list($cats, $pages) = paginate(3, $categories, new Category());
+                $cats = json_decode(json_encode($cats));
+
+                $subcategories = SubCategory::all()->count();
+                list($sub_cats, $sub_pages) = paginate(3, $subcategories, new SubCategory());
+                $sub_cats = json_decode(json_encode($sub_cats));
+                view("admin/category/create", compact('cats', 'errors', 'pages', 'sub_cats', 'sub_pages'));
             } else {
                 $slug = slug($post->name);
                 $con = Category::create([
@@ -51,11 +56,24 @@ class CategoryController extends BaseController
                     "slug" => $slug
                 ]);
                 if ($con) {
-                    $cats = Category::all();
                     $success = "Success";
-                    view("admin/category/create", compact('cats', 'success'));
+                    $categories = Category::all()->count();
+                    list($cats, $pages) = paginate(3, $categories, new Category());
+                    $cats = json_decode(json_encode($cats));
+
+                    $subcategories = SubCategory::all()->count();
+                    list($sub_cats, $sub_pages) = paginate(3, $subcategories, new SubCategory());
+                    $sub_cats = json_decode(json_encode($sub_cats));
+                    view("admin/category/create", compact('cats', 'success', 'pages', 'sub_cats', 'sub_pages'));
                 } else {
-                    echo "fail";
+                    $errors = "Fail";
+                    $categories = Category::all()->count();
+                    list($cats, $pages) = paginate(3, $categories, new Category());
+                    $cats = json_decode(json_encode($cats));
+                    $subcategories = SubCategory::all()->count();
+                    list($sub_cats, $sub_pages) = paginate(3, $subcategories, new SubCategory());
+                    $sub_cats = json_decode(json_encode($sub_cats));
+                    view("admin/category/create", compact('cats', 'errors', 'pages', 'sub_cats', 'sub_pages'));
                 }
                 // $category->name = $post->name;
                 // $category->slug = $slug;
@@ -103,14 +121,17 @@ class CategoryController extends BaseController
                 //$data['con'] = "Validation error";
                 header('HTTP/1.1 422 Validation Error', true, 422);
                 echo json_encode($validator->getErrors());
+                exit;
             } else {
                 Category::where("id", $post->id)->update(["name" => $post->name]);
-                $data['con'] = "Good to go";
-                echo json_encode($data);
+                //$data['con'] = "Good to go";
+                echo json_encode("update success");
+                exit;
             }
         } else {
             header('HTTP/1.1 422 Token Mismatch Error', true, 422);
-            echo json_encode(["errors" => ""]);
+            echo json_encode(["error" => "Token Mismatch Error"]);
+            exit;
         }
     }
 }
