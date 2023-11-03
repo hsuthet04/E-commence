@@ -17,7 +17,7 @@
                             <i class="fa fa-eye"></i>
                         </button>
                         <span><?php echo e($product->price); ?>Ks</span>
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('<?php echo e($product->id); ?>')">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                     </div>
@@ -46,7 +46,7 @@
                             <i class="fa fa-eye"></i>
                         </button>
                         <span><?php echo e($product->price); ?>Ks</span>
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('<?php echo e($product->id); ?>')">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                     </div>
@@ -58,11 +58,5 @@
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('script'); ?>
-<script>
-    function goToCartPage(){
-        alert('123');
-    }
-</script>
-<?php $__env->stopSection(); ?>
+
 <?php echo $__env->make("layout.master", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

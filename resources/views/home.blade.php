@@ -19,7 +19,7 @@
                             <i class="fa fa-eye"></i>
                         </button>
                         <span>{{$product->price}}Ks</span>
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('{{$product->id}}')">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                     </div>
@@ -47,7 +47,7 @@
                             <i class="fa fa-eye"></i>
                         </button>
                         <span>{{$product->price}}Ks</span>
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('{{$product->id}}')">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                     </div>
@@ -59,10 +59,3 @@
 </div>
 @endsection
 
-@section('script')
-<script>
-    function goToCartPage(){
-        alert('123');
-    }
-</script>
-@endsection

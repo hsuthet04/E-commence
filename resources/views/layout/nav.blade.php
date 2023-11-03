@@ -15,9 +15,9 @@
                 <a class="nav-link" href="/admin" style="color:#513B1C;">Admin Panel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color:#513B1C; cursor:pointer;" onclick="goToCartPage()">
+                <a class="nav-link" style="color:#513B1C; cursor:pointer;" onclick="goToCartPage()" href="/cart">
                     Cart
-                    <span class="badge badge-danger badge-pill" style="position:relative; top:-10px;left:-5px;">0</span>
+                    <span class="badge badge-danger badge-pill" style="position:relative; top:-10px;left:-5px;" id="cart-count">0</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
@@ -33,3 +33,4 @@
         </ul>
     </div>
 </nav>
+@section('script')

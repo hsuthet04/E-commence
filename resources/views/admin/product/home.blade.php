@@ -43,7 +43,7 @@
                 </tbody>
             </table>
             <!-- Table end -->
-            <div class="mt-2 offset-md-5">
+            <div class="mt-2">
                 {!! $pages !!}
             </div>
         </div>

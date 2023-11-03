@@ -8,3 +8,6 @@
 #edit-cat {
     cursor: pointer;
 }
+.pagination{
+    justify-content: center !important;
+}

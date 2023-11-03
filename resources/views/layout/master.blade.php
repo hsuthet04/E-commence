@@ -19,6 +19,7 @@
     </div> -->
     @yield('content')
     <script src="{{asset("js/app.js")}}"></script>
+    <script src="{{asset("js/custom.js")}}"></script>
     <script src="https://kit.fontawesome.com/47655717bb.js" crossorigin="anonymous"></script>
     @yield("script")
 </body>

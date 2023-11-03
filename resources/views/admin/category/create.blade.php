@@ -126,7 +126,7 @@
                 <form>
                     <div class="form-group">
                         <label for="name">Category Name</label>
-                        <input type="text" class="form-control rounded-0" id="edit-name">
+                        <input type="text" class="form-control rounded-0" id="edit-name" name="name">
                     </div>
                     <input type="hidden" id="sub-cat-edit-token" value="{{\App\Classes\CSRFToken::_token()}}">
                     <input type="hidden" id="sub-cat-edit-id">

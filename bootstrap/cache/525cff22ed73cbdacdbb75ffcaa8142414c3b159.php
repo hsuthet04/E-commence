@@ -19,6 +19,7 @@
     </div> -->
     <?php echo $__env->yieldContent('content'); ?>
     <script src="<?php echo e(asset("js/app.js")); ?>"></script>
+    <script src="<?php echo e(asset("js/custom.js")); ?>"></script>
     <script src="https://kit.fontawesome.com/47655717bb.js" crossorigin="anonymous"></script>
     <?php echo $__env->yieldContent("script"); ?>
 </body>
