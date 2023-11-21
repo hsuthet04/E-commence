@@ -1,4 +1,4 @@
-<?php $__env->startSection("title"."Cafe"); ?>
+<?php $__env->startSection("title"."Dear"); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="container my-5">
@@ -13,9 +13,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="row justify-content-between">
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <a href="/product/<?php echo e($product->id); ?>/detail" class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
                             <i class="fa fa-eye"></i>
-                        </button>
+                        </a>
                         <span><?php echo e($product->price); ?>Ks</span>
                         <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('<?php echo e($product->id); ?>')">
                             <i class="fa fa-shopping-cart"></i>
@@ -42,9 +42,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="row justify-content-between">
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <a href="/product/<?php echo e($product->id); ?>/detail" class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
                             <i class="fa fa-eye"></i>
-                        </button>
+                        </a>
                         <span><?php echo e($product->price); ?>Ks</span>
                         <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('<?php echo e($product->id); ?>')">
                             <i class="fa fa-shopping-cart"></i>
@@ -57,6 +57,4 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
-
-
 <?php echo $__env->make("layout.master", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

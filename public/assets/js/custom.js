@@ -16,14 +16,30 @@ function addToCart(num) {
 
 function showCartItem() {
   let ary = JSON.parse(localStorage.getItem("items"));
-  $("#cart-count").html(ary.length);
+  if (ary != null) {
+    $("#cart-count").html(ary.length);
+  } else {
+    $("#cart-count").html(0);
+  }
 }
 function getCartItem() {
   let ary = JSON.parse(localStorage.getItem("items"));
   return ary;
 }
-
+function deleteItem(id) {
+  var ary = JSON.parse(localStorage.getItem("items"));
+  if (ary != null) {
+    ary.forEach((item) => {
+      if (item == id) {
+        var ind = ary.indexOf(item);
+        ary.splice(ind, 1);
+      }
+    });
+  }
+  localStorage.setItem("items", JSON.stringify(ary));
+  showCartItem();
+}
 function clearCart() {
   localStorage.removeItem("items");
 }
-getCartItem();
+showCartItem();

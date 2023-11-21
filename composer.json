@@ -1,25 +1,23 @@
 {
-    "autoload": {
-        "psr-4": {
-            "App\\":"app"
-        },
-        "files":[
-            "app/functions/helper.php"
-        ]
+  "autoload": {
+    "psr-4": {
+      "App\\": "app"
     },
-    "require": {
-        "vlucas/phpdotenv": "^5.5",
-        "altorouter/altorouter": "^2.0",
-        "philo/laravel-blade": "^3.1",
-        "illuminate/database": "^5.5",
-        "phpmailer/phpmailer": "^6.8",
-        "filp/whoops": "^2.15",
-        "nesbot/carbon": "^1.39",
-        "voku/pagination": "^4.0"
-    },
-    "config": {
-        "allow-plugins": {
-            "kylekatarnls/update-helper": true
-        }
-    }
+    "files": [
+      "app/functions/helper.php"
+    ]
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "altorouter/altorouter": "^2.0",
+    "philo/laravel-blade": "^3.1",
+    "illuminate/database": "^5.5",
+    "phpmailer/phpmailer": "^6.8",
+    "nesbot/carbon": "^1.39",
+    "voku/pagination": "^4.0",
+    "stripe/stripe-php": "^13.2"
+  },
+  "require-dev": {
+    "filp/whoops": "^2.15"
+  }
 }

@@ -48,3 +48,4 @@ function paginate($num_of_records, $total_record,$object)
 
     return [$categories, $pages->page_links()];
 }
+

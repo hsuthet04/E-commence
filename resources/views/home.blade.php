@@ -1,6 +1,6 @@
 @extends("layout.master")
 
-@section("title"."Cafe")
+@section("title"."Dear")
 
 @section('content')
 <div class="container my-5">
@@ -15,9 +15,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="row justify-content-between">
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <a href="/product/{{$product->id}}/detail" class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
                             <i class="fa fa-eye"></i>
-                        </button>
+                        </a>
                         <span>{{$product->price}}Ks</span>
                         <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('{{$product->id}}')">
                             <i class="fa fa-shopping-cart"></i>
@@ -43,9 +43,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="row justify-content-between">
-                        <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
+                        <a href="/product/{{$product->id}}/detail" class="btn btn-sm" style="border:none;  background-color:#BCB88A;">
                             <i class="fa fa-eye"></i>
-                        </button>
+                        </a>
                         <span>{{$product->price}}Ks</span>
                         <button class="btn btn-sm" style="border:none;  background-color:#BCB88A;" onclick="addToCart('{{$product->id}}')">
                             <i class="fa fa-shopping-cart"></i>
@@ -58,4 +58,3 @@
     </div>
 </div>
 @endsection
-
